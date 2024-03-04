@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapSpot | Add Location</title>
+    <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='edit_photospot.css')}}">
+</head>
+<body>
+    <div class="header">
+        <img src="{{url_for('static', filename='camera.png')}}">
+        <h1>SnapSpot</h1> 
+    </div>  
+    <div class=links> 
+        <a href="/home">Home <strong> | </strong></a>
+        <a href="/logout"> Logout</a>
+    </div>
+    <div class="container">
+        <h2>Edit {{photospot.title}} </h2>
+        {% with messages = get_flashed_messages(category_filter=['create_photospot']) %}
+            {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}  
+    <form action="/edit" method="post">
+        <input type="hidden" name="id" value="{{photospot.id}}">
+        <div class="form_text"> 
+            <label> Title:
+                <input type="text" name="title" class="title" value="{{photospot.title}}"> 
+           </label>
+           <label> Location:
+                <input type="text" name="location" class="location" value="{{photospot.location}}">
+            </label>
+           <label> Description: 
+                <input type="text" name="description" class="description" value="{{photospot.description}}">
+            </label>
+        </div>
+        <div class="radios"> 
+            <label for="direct_sunlight" class="direct_light"> <strong> Direct Sunlight?</strong> 
+                {% if direct_sunlight == 1 %}
+                <input type="radio" name="direct_sunlight" value="1" id="yes" checked>
+                <label for="yes"> Yes</label>
+                <input type="radio" name="direct_sunlight" value="0" id="no">
+                <label for="no"> No</label>
+                {% else %}
+                <input type="radio" name="direct_sunlight" value="1" id="yes">
+                <label for="yes"> Yes</label>
+                <input type="radio" name="direct_sunlight" value="0" id="no" checked>
+                <label for="no"> No</label>
+                {% endif %}
+            </label>
+            <label for="bathroom_avail" class="bathroom_available"> <strong> Bathrooms available? </strong> 
+                {% if bathroom_avail == 1 %}
+                <input type="radio" name="bathroom_avail" value="1" id="yes" checked>
+                <label for="yes"> Yes</label>
+                <input type="radio" name="bathroom_avail" value="0" id="no">
+                <label for="no"> No</label>
+                {% else %}
+                <input type="radio" name="bathroom_avail" value="1" id="yes" >
+                <label for="yes"> Yes</label>
+                <input type="radio" name="bathroom_avail" value="0" id="no" checked>
+                <label for="no"> No</label>
+                {% endif %}
+            </label> 
+        </div>
+            <input type="submit" value="Update" class="button">
+       </form>
+    </div>
+</body>
+</html>
