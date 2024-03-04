@@ -1,4 +1,3 @@
-# SnapSpot
 Solo Project Proposal 
 Juli Deng 
 
@@ -17,3 +16,4 @@ Features: locates  photo spots local to creators, outlines description of locati
 free resource for any creator to use, photo locations are often public and free to use 
 
 Github link: https://github.com/juli-deng96/SnapSpot.git
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapSpot | View Location</title>
+    <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='view_photospot.css')}}">
+</head>
+<body>
+    <div class="header">
+        <img src="{{url_for('static', filename='camera.png')}}">
+        <h1>SnapSpot</h1> 
+    </div>
+    <div class="links">
+        <a href="/home">Home <strong>|</strong></a>
+        <a href="/logout">Logout</a>
+    </div>
+    <div class="container">
+    {% for photospot in photospot %}
+        <h2>{{photospot.title}}</h2>
+        <p> <strong>Created by: </strong>{{photospot.host.first_name}} {{photospot.host.last_name}}</p>
+        <p> <strong>Location: </strong>{{photospot.location}}</p>
+        <p> <strong>Description: </strong>{{photospot.description}}</p>
+            {% if photospot.direct_sunlight == 1 %}
+                <p> <strong>Direct Sunlight? </strong> Yes</p>
+                {% else %}
+                <p><strong>Direct Sunlight? </strong> No</p>
+            {% endif %}
+            {% if photospot.bathroom_avail == 1 %}
+                <p> <strong>Bathrooms Available? </strong> Yes</p>
+                {% else %}
+                <p><strong>Bathrooms Available? </strong>  No</p>
+            {% endif %}
+            {% if session.user_id == photospot.host_id %}
+                <a href="/edit/{{photospot.id}}" class="edit">Edit <strong>|</strong></a>
+                <a href="/delete/{{photospot.id}}">Delete</a>
+            {% endif %}
+    {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapSpot Homepage </title>
+    <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='homepagestyle.css')}}">
+</head>
+<body>
+    <div class="header">
+        <img src="{{url_for('static', filename='camera.png')}}">
+        <h1>SnapSpot</h1> 
+    </div>
+    <div class="subheader">
+        <h2>Welcome, {{user.first_name}}</h2>
+        <a class="logout" href="/logout"> Logout</a>
+    </div>
+    <div class="maincontainer">
+        <a href="/add" class="add">Add a New Location</a>
+        <div class="photospots">
+            <h3> Photo Spots</h3>
+            {% for photospot in photospot %}
+                <a href="/view/{{photospot.id}}">{{photospot.title}} </a>
+                <p> <strong>Created by:</strong> {{photospot.host.first_name}} {{photospot.host.last_name}}</p>
+                <p> <strong>Location:</strong> {{photospot.location}}</p>
+                    {% if session.user_id == photospot.host_id %}
+                        <a href="/edit/{{photospot.id}}">Edit <strong>|</strong></a>
+                        <a href="/delete/{{photospot.id}}">Delete</a>
+                    {% endif %}
+                <p>       </p>
+            {% endfor %}
+        </div>
+
+    
+    </div>
+</body>
+</html>

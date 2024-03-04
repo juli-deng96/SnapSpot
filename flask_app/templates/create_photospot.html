@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnapSpot | Add Location</title>
+    <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='add_photospot.css')}}">
+</head>
+<body>
+    <div class="header">
+        <img src="{{url_for('static', filename='camera.png')}}">
+        <h1>SnapSpot</h1> 
+    </div>
+    <div class="links"> 
+            <a class= "home" href="/home">Home <strong>|</strong> </a>
+            <a class="logout" href="/logout"> Logout </a>
+    </div>
+    <div class="container">
+        <h2>Add a Photo Spot</h2>
+        {% with messages = get_flashed_messages(category_filter=['create_photospot']) %}
+            {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}  
+    <form action="/add" method="post">
+        <input type="hidden" name="user_id" value="{{session.user_id}}">
+        <div class="form_text">
+            <label> Title:
+                <input type="text" name="title" class="title"> 
+           </label>
+           <label> Location:
+                <input type="text" name="location" class="location">
+            </label>
+           <label> Description: 
+                <input type="text" name="description" class="description">
+            </label>
+        </div>
+            <div class="radios"> 
+                <label for="direct_sunlight" class="direct_light"> <strong> Direct Sunlight?</strong> 
+                    <input type="radio" name="direct_sunlight" value="1" id="yes">
+                    <label for="yes" class="radio"> Yes</label>
+                    <input type="radio" name="direct_sunlight" value="0" id="no">
+                    <label for="no" class="radio"> No</label>
+                </label>
+                <label for="bathroom_avail" class="bathroom_available"><strong> Bathrooms Available?</strong> 
+                    <input type="radio" name="bathroom_avail" class="radio" value="1" id="yes">
+                    <label for="yes" class="radio"> Yes</label>
+                    <input type="radio" name="bathroom_avail" value="0" id="no">
+                    <label for="no" class="radio"> No</label>
+                </label>
+            </div>
+        <input type="submit" value="Create" class="button">
+       </form>
+    </div>
+</body>
+</html>

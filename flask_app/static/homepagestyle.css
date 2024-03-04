@@ -1,0 +1,60 @@
+.header{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+}
+img{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+h1{
+    color: white;
+    font-family: Tahoma;
+    font-size: 40px;
+    align-self: center;
+}
+body{
+    background-color: pink;
+}
+.subheader{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 3px black solid;
+}
+h2{
+    margin-left: 20px;
+    font-family: Georgia;
+}
+.logout{
+    justify-self: end;
+    margin-right: 30px;
+}
+.maincontainer{
+    display: inline-flex;
+    gap:375px;
+    width: 100%;
+}
+.photospots{
+    justify-self:start;
+    width: 100%;
+}
+.add{
+    width:300px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+h3{
+    font-size: 30px;
+    font-family: Georgia;
+}
+a{
+    font-size: 18px;
+}
+p{
+    font-size: 18px;
+}
